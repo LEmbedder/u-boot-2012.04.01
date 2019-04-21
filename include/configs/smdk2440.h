@@ -136,7 +136,7 @@
  * Miscellaneous configurable options
  */
 #define CONFIG_SYS_LONGHELP		/* undef to save memory */
-#define CONFIG_SYS_PROMPT	"SMDK2410 # "
+#define CONFIG_SYS_PROMPT	"SMDK2440 # "
 #define CONFIG_SYS_CBSIZE	256
 /* Print Buffer Size */
 #define CONFIG_SYS_PBSIZE	(CONFIG_SYS_CBSIZE + \
@@ -219,7 +219,7 @@
 #define MTDIDS_DEFAULT		"nand0=jz2440-0"   /* 哪一个设备 */
 #define MTDPARTS_DEFAULT	"mtdparts=jz2440-0:1m(u-boot),"	\
 						"128k(params),"		\
-						"6m(kernel),"	\
+						"8m(kernel),"	\
 						"-(rootfs)"		\
 
 

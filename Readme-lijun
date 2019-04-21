@@ -1,3 +1,4 @@
+打补丁：patch -p1 < ../u-boot-2012.04.01_100ask.patch
 1:编译
 	make smdk2440_config
 	make
@@ -16,13 +17,12 @@
 
 
 
-4:分区表
 device nand0 <jz2440-0>, # parts = 4
  #: name                size            offset          mask_flags
  0: u-boot              0x00100000      0x00000000      0
  1: params              0x00020000      0x00100000      0
- 2: kernel              0x00200000      0x00120000      0
- 3: rootfs              0x0fce0000      0x00320000      0
+ 2: kernel              0x00800000      0x00120000      0
+ 3: rootfs              0x0f6e0000      0x00920000      0
 
 //启动uboot后使用nor flash下载
 uboot1.1.6演示时可以用，但是要先下载到norflash里，再从norflash启动
