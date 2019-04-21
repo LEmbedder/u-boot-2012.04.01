@@ -6,7 +6,8 @@
 	nfs 30000000 192.168.1.11:/work/platform-2440/system/uboot/u-boot-2012.04.01/u-boot.bin
 	nand erase 0x00 0x100000 
 	nand write 30000000 0x00 0x100000
-
+	一次下载：
+	nfs 30000000 192.168.1.11:/work/platform-2440/system/uboot/u-boot-2012.04.01/u-boot.bin && nand erase 0x00 0x100000 && nand write 30000000 0x00 0x100000
 3:nfs下载uboot到norflash：
 	nfs 30000000 192.168.1.11:/work/platform-2440/system/uboot/u-boot-2012.04.01/u-boot.bin
 	protect off all
@@ -15,6 +16,13 @@
 
 
 
+4:分区表
+device nand0 <jz2440-0>, # parts = 4
+ #: name                size            offset          mask_flags
+ 0: u-boot              0x00100000      0x00000000      0
+ 1: params              0x00020000      0x00100000      0
+ 2: kernel              0x00200000      0x00120000      0
+ 3: rootfs              0x0fce0000      0x00320000      0
 
 //启动uboot后使用nor flash下载
 uboot1.1.6演示时可以用，但是要先下载到norflash里，再从norflash启动
