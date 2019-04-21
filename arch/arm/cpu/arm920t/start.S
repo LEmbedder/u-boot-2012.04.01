@@ -1,8 +1,8 @@
 /*
  *  armboot - Startup Code for ARM920 CPU-core
  *
- *  Copyright (c) 2001	Marius GrÃ¶ger <mag@sysgo.de>
- *  Copyright (c) 2002	Alex ZÃ¼pke <azu@sysgo.de>
+ *  Copyright (c) 2001	Marius Græšger <mag@sysgo.de>
+ *  Copyright (c) 2002	Alex Zçœ‰pke <azu@sysgo.de>
  *  Copyright (c) 2002	Gary Jennejohn <garyj@denx.de>
  *
  * See file CREDITS for list of people who contributed to this
@@ -172,16 +172,16 @@ copyex:
 # endif
 
 
-/* 2. ÉèÖÃÊ±ÖÓ */
+/* 2. è®¾ç½®æ—¶é’Ÿ */
 	ldr r0, =0x4c000014
 	//	mov r1, #0x03;			  // FCLK:HCLK:PCLK=1:2:4, HDIVN=1,PDIVN=1
 	mov r1, #0x05;			  // FCLK:HCLK:PCLK=1:4:8
 	str r1, [r0]
 
-	/* Èç¹ûHDIVN·Ç0£¬CPUµÄ×ÜÏßÄ£Ê½Ó¦¸Ã´Ó¡°fast bus mode¡±±äÎª¡°asynchronous bus mode¡± */
-	mrc	p15, 0, r1, c1, c0, 0		/* ¶Á³ö¿ØÖÆ¼Ä´æÆ÷ */ 
-	orr	r1, r1, #0xc0000000			/* ÉèÖÃÎª¡°asynchronous bus mode¡± */
-	mcr	p15, 0, r1, c1, c0, 0		/* Ğ´Èë¿ØÖÆ¼Ä´æÆ÷ */
+	/* å¦‚æœHDIVNé0ï¼ŒCPUçš„æ€»çº¿æ¨¡å¼åº”è¯¥ä»â€œfast bus modeâ€å˜ä¸ºâ€œasynchronous bus modeâ€ */
+	mrc	p15, 0, r1, c1, c0, 0		/* è¯»å‡ºæ§åˆ¶å¯„å­˜å™¨ */
+	orr	r1, r1, #0xc0000000			/* è®¾ç½®ä¸ºâ€œasynchronous bus modeâ€ */
+	mcr	p15, 0, r1, c1, c0, 0		/* å†™å…¥æ§åˆ¶å¯„å­˜å™¨ */
 
 #define S3C2440_MPLL_400MHZ     ((0x5c<<12)|(0x01<<4)|(0x01))
 
@@ -190,7 +190,7 @@ copyex:
 	ldr r1, =S3C2440_MPLL_400MHZ
 	str r1, [r0]
 
-	/* Æô¶¯ICACHE */
+	/* å¯åŠ¨ICACHE */
 	mrc p15, 0, r0, c1, c0, 0	@ read control reg
 	orr r0, r0, #(1<<12)
 	mcr	p15, 0, r0, c1, c0, 0   @ write it back
@@ -226,11 +226,11 @@ call_board_init_f:
 	ldr	r0,=0x00000000
 	bl	board_init_f
 
-	/* unsigned intµÄÖµ´æÔÚr0Àï, ÕıºÃ¸øboard_init_r */
+	/* unsigned intçš„å€¼å­˜åœ¨r0é‡Œ, æ­£å¥½ç»™board_init_r */
 	ldr r1, _TEXT_BASE
-	ldr sp, base_sp 			/* ÖØĞÂÉèÖÃÕ» */
+	ldr sp, base_sp 			/* é‡æ–°è®¾ç½®æ ˆ */
 
-	/* µ÷ÓÃµÚ2½×¶ÎµÄ´úÂë */
+	/* è°ƒç”¨ç¬¬2é˜¶æ®µçš„ä»£ç  */
 	bl board_init_r
 
 /*
