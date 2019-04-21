@@ -1,0 +1,24 @@
+1:编译
+	make smdk2410_config
+	make
+
+2:nfs下载uboot到nandflash：
+	nfs 30000000 192.168.1.11:/work/platform-2440/system/uboot/u-boot-2012.04.01/u-boot.bin
+	nand erase 0x00 0x100000 
+	nand write 30000000 0x00 0x100000
+
+3:nfs下载uboot到norflash：
+	nfs 30000000 192.168.1.11:/work/platform-2440/system/uboot/u-boot-2012.04.01/u-boot.bin
+	protect off all
+	erase 0 100000
+	cp.b 0x30000000 0
+
+
+
+
+//启动uboot后使用nor flash下载
+uboot1.1.6演示时可以用，但是要先下载到norflash里，再从norflash启动
+uboot/u-boot-2012测试不能使用
+protect off all
+erase 0 100000
+cp.b 0x30000000 0
