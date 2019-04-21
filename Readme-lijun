@@ -1,5 +1,5 @@
 1:编译
-	make smdk2410_config
+	make smdk2440_config
 	make
 
 2:nfs下载uboot到nandflash：
